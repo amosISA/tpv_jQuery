@@ -1,0 +1,904 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="utf-8">
+        <title>TPV</title>
+        <link rel="stylesheet" type="text/css" href="css/estilos.css"/>
+        <link rel="stylesheet" href="css/jqueryuicss.css">
+        <link rel="stylesheet" href="css/calculadora.css">
+    </head>
+    <body>
+        <div id="contenido">
+            <h1>Tienda virtual DWEC</h1>
+            <div id="wrapper" class="ui-widget ui-helper-clearfix">
+                <ul id="izquierda" class="izquierda ui-helper-reset ui-helper-clearfix" style="border: 1px solid black;">
+                    <h2>Productos disponibles</h2>
+                    <li data-price="12.36" class="objeto ui-widget-content ui-corner-tr" title="Americana 1: 12.36€" ref="Amer. 1">
+                        <img src="img/americana01.png" />
+                        <p class="ref"> Ref: <span class="desc">Amer. 1</span> </p>
+                        <p class="ref"> Precio: <span class="price">12.36</span> € </p>
+                    </li>
+                    <li data-price="6.00" class="objeto ui-widget-content ui-corner-tr" title="Calcetin 1: 6.00€" ref="Calcetin 1">
+                        <img src="img/calcetin01.png" />
+                        <p class="ref"> Ref: <span class="desc">Calcetin 1</span> </p>
+                        <p class="ref"> Precio: <span class="price">6.00</span> € </p>
+                    </li>
+                    <li data-price="10.99" class="objeto ui-widget-content ui-corner-tr" title="Camisa B1: 10.99€" ref="Camisa B1">
+                        <img src="img/camisa01.jpg" />
+                        <p class="ref"> Ref: <span class="desc">Camisa B1</span> </p>
+                        <p class="ref"> Precio: <span class="price">10.99</span> € </p>
+                    </li>
+                    <li data-price="15.50" class="objeto ui-widget-content ui-corner-tr" title="Camisa 1: 15.50€" ref="Camisa 1">
+                        <img src="img/camisa01.png" />
+                        <p class="ref"> Ref: <span class="desc">Camisa 1</span> </p>
+                        <p class="ref"> Precio: <span class="price">15.50</span> € </p>
+                    </li>
+                    <li data-price="7.99" class="objeto ui-widget-content ui-corner-tr" title="Camisa 2: 7.99€" ref="Camisa 2">
+                        <img src="img/camisa02.jpg" />
+                        <p class="ref"> Ref: <span class="desc">Camisa 2</span> </p>
+                        <p class="ref"> Precio: <span class="price">7.99</span> € </p>
+                    </li>
+                    <li data-price="27.35" class="objeto ui-widget-content ui-corner-tr" title="Camisa 3: 27.35€" ref="Camisa 3">
+                        <img src="img/camisa03.png" />
+                        <p class="ref"> Ref: <span class="desc">Camisa 3</span> </p>
+                        <p class="ref"> Precio: <span class="price">27.35</span> € </p>
+                    </li>
+                    <li data-price="36.99" class="objeto ui-widget-content ui-corner-tr" title="Camisa 4: 36.99€" ref="Camisa 4">
+                        <img src="img/camisa04.png" />
+                        <p class="ref"> Ref: <span class="desc">Camisa 4</span> </p>
+                        <p class="ref"> Precio: <span class="price">36.99</span> € </p>
+                    </li>
+                    <li data-price="30.99" class="objeto ui-widget-content ui-corner-tr" title="Pantalon 1: 30.99€" ref="Pantalon 1">
+                        <img src="img/pantalon01.png" />
+                        <p class="ref"> Ref: <span class="desc">Pantalon 1</span> </p>
+                        <p class="ref"> Precio: <span class="price">30.99</span> € </p>
+                    </li>
+                    <li data-price="10.99" class="objeto ui-widget-content ui-corner-tr" title="Pantalon 2: 10.99€" ref="Pantaon 2">
+                        <img src="img/pantalon02.png" />
+                        <p class="ref"> Ref: <span class="desc">Pantalon 2</span> </p>
+                        <p class="ref"> Precio: <span class="price">10.99</span> € </p>
+                    </li>
+                    <li data-price="27.15" class="objeto ui-widget-content ui-corner-tr" title="Pantalon 3: 27.15€" ref="Pantalon 3">
+                        <img src="img/pantalon03.png" />
+                        <p class="ref"> Ref: <span class="desc">Pantalon 3</span> </p>
+                        <p class="ref"> Precio: <span class="price">27.15</span> € </p>
+                    </li>
+                </ul>
+
+                <div id="padreDerecha">
+                    <div id="derecha" class="ui-widget-content ui-state-default" style="border: 1px solid black;">
+                        <h2>Carro de la compra</h2>
+                        <h3 style="font-size:20px;text-align:center;"><strong>Productos a comprar: <span id="count">0</span></strong></h3>
+                    </div>
+                </div>
+                <button type="button" class="btn-info" id="changeQuantity">Cambiar cantidades</button>
+
+                <!-- BARRA DE PROGRESO -->
+                <div id="progressbar"><span style="font-size:17px; position: absolute;text-align: center;width: 269px;margin: 1px 0 0 0; "><strong>Seleccionando productos</strong></span></div>
+
+                <!-- SLIDER RANGE  -->
+                <label for="amount">Price range:</label>
+                <input type="text" id="amount" readonly style="border:0; color:#f6931f; font-weight:bold;">
+                <div id="slider-range"></div>
+            </div>
+
+            <div id="lineasProducto">
+                <h2>Líneas productos</h2>
+                <table class="tablaLineasProductos">
+                    <thead>
+                        <tr>
+                            <th>Descripción</th>
+                            <th>Precio</th>
+                            <th>Cantidad</th>
+                        </tr>
+                    </thead>
+                    <tbody id="bodyTablaLineasProductos">
+
+                    </tbody>
+                    <button class="btn-info" style="float:left;" id="priceTotal" type="button" name="button">Calcular precio</button>
+                    <div id="caja" style="float:right;">
+                        Precio: <span id="totalPrice"></span>
+                    </div>
+
+                </table>
+            </div>
+
+            <div id="abajo">
+                <h2>Formulario de compra</h2>
+                <form id="myForm" style="width:200px;" action="#" method="post">
+                    <label>Nº Factura</label> <input type="text" name="factura1" id="ifac"><br/>
+                    <label>Nombre</label> <input type="text" name="nombre1" id="inombre"><br/>
+                    <label>DNI</label> <input type="text" name="dni1" id="idni"><br/>
+                    <label>Domicilio</label> <input type="text" name="domicilio1" id="idomicilio"><br/>
+                    <label>IBAN</label> <input type="text" name="iban1" id="iiban" placeholder="MS22-2222-2222-22-2222222222"><br/>
+                    <label>Date</label> <input type="text" name="datepicker1" id="datepicker"><br/>
+                </form>
+
+                <!-- OPCIONES DE PAGO -->
+                <fieldset id="opcionesPago" style="margin-top:20px;">
+                    <legend><strong>Opciones de pago:</strong></legend>
+                    <label for="radio-1">En efectivo</label>
+                    <input type="radio" name="radio-1" id="radio-1">
+                    <label for="radio-2">Con tarjeta</label>
+                    <input type="radio" name="radio-1" id="radio-2">
+                </fieldset>
+
+                <!-- TARJETAS -->
+                <fieldset id="opcionesTrajetas">
+                  <legend><strong>Tipos de tarjetas:</strong> </legend>
+                  <div class="controlgroup">
+                    <select id="car-type">
+                      <option>Visa</option>
+                      <option>Mastercard</option>
+                      <option>Banco IES PERE MARIA</option>
+                    </select>
+                  </div>
+                </fieldset>
+
+                <div style="width:200px;margin-top:20px;" class="botones">
+                    <button id="create" name="ok">Rellenar datos factura</button>
+                </div>
+
+                <!-- Selectable -->
+                <ol id="selectable">
+                  <li class="ui-state-default">1</li>
+                  <li class="ui-state-default">2</li>
+                  <li class="ui-state-default">3</li>
+                  <li class="ui-state-default">4</li>
+                  <li class="ui-state-default">5</li>
+                  <li class="ui-state-default">6</li>
+                  <li class="ui-state-default">7</li>
+                  <li class="ui-state-default">8</li>
+                  <li class="ui-state-default">9</li>
+                </ol>
+
+                <!-- Boton para pagar -->
+                <button type="button" id="payment" name="button">Pagar con tarjeta</button>
+            </div>
+
+            <div id="historico">
+                <h2>Histórico de facturas</h2><a href="#" id="clear">Limpiar histórico</a>
+                <div id="accordion">
+
+                </div>
+            </div>
+
+            <!-- TABS: CALCULADORA, CREAR PRODUCTOS, BUSCAR PRODUCTOS -->
+            <div id="tabs">
+              <ul>
+                <li><a href="#tabs-1"><strong>Calculadora</strong></a></li>
+                <li><a href="#tabs-2"><strong>Buscar producto</strong></a></li>
+                <li><a href="#tabs-3"><strong>Crear producto</strong></a></li>
+              </ul>
+              <div id="tabs-1">
+                  <div class="content">
+                      <div class="calculator">
+                          <div class="screen"></div>
+                          <input type="hidden" value="" class="outcome" />
+                          <ul class="buttons">
+                              <li class="clear"><a>C</a></li>
+                              <li><a href="-" class="val">&plusmn;</a></li>
+                              <li><a href="/" class="val">&divide;</a></li>
+                              <li><a href="*" class="val">&times;</a></li>
+                              <li><a href="7" class="val">7</a></li>
+                              <li><a href="8" class="val">8</a></li>
+                              <li><a href="9" class="val">9</a></li>
+                              <li><a href="-" class="val">-</a></li>
+                              <li><a href="4" class="val">4</a></li>
+                              <li><a href="5" class="val">5</a></li>
+                              <li><a href="6" class="val">6</a></li>
+                              <li><a href="+" class="val">+</a></li>
+                              <li><a href="1" class="val">1</a></li>
+                              <li><a href="2" class="val">2</a></li>
+                              <li><a href="3" class="val">3</a></li>
+                              <li><a class="equal tall">=</a></li>
+                              <li><a href="0" class="val wide shift">0</a></li>
+                              <li><a href="." class="val shift">.</a></li>
+                          </ul>
+                      </div>
+                  </div>
+              </div>
+              <div id="tabs-2">
+                <p><strong>Búsqueda de productos: </strong></p>
+                <input type="text" id="searchProducts">
+                <button type="button" id="buttonSearchProducts">Buscar</button>
+                <div id="resultSearch">Resultados: </div>
+              </div>
+              <div id="tabs-3">
+                <p><strong>Crear productos: </strong></p>
+                <form action="#" id="miform">
+                Seleccionar imagen: <input type="file" name="image" id="fileImage" accept="image/*"><br>
+                Descripción: <input type="text" id="createProductsDesc" placeholder="Camisa 90"><br>
+                Precio: <input type="text" id="createProductsPrice" placeholder="10.00"><br><br>
+                <button id="buttonCreateProducts">Crear</button>
+                </form>
+              </div>
+            </div>
+
+            <!-- ALERTA UNA VEZ FINALIZADA LA COMPRA -->
+            <div id="dialog" title="Finalización de la compra!">
+                Quiere realizar otra compra?
+            </div>
+        </div>
+
+        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+        <script src="http://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+        <script src="js/calculadora.js"></script>
+        <script src="js/validacion.js"></script>
+
+        <script>
+            var $purchases = $("#izquierda"), $sales = $("#derecha"), contadorFactura = 0, counter = 0, price = 0.0, infoTable = [], myProductsJSON = [];;
+
+
+            var tpv = {
+                init: function(){
+
+                    $(".ui-helper-hidden-accessible").remove();
+                    $("#dialog").hide();
+
+                    //drag y drop
+                    tpv.purchasesSalesDraggableDroppable();
+
+                    //rellanamos factura
+                    $("#create").click(function(){
+                        if(validacion()) tpv.factura();
+                    });
+
+                    //carrito resizable
+                    tpv.resizable();
+
+                    //botones widget
+                    tpv.botonesWdiget();
+
+                    //click en Cambiar Cantidades
+                    $("#changeQuantity").click(function(){
+                        $("#priceTotal").prop( "disabled", false );
+                        //Cuando ha acabado la funcion de insertar precio y descripcion del producto, entonces añadimos el spinner
+                        $.when(tpv.lineaFactura()).then(function(){
+                            $(".filaProd").spinner({min: 1});
+                        });
+                    });
+
+                    //calculamos el precio total de los productos, desactivamos el boton de calcular precio y el div del formulario lo escondemos
+                    $("#priceTotal").prop( "disabled", true );
+                    $("#abajo").hide();
+                    $("#priceTotal").click(function(){
+                        tpv.precioTotal();
+                    });
+
+                    //accordeon
+                    $( "#accordion" ).accordion({collapsible: true});
+
+                    //radiobutton efectivo tarjeta
+                    tpv.radiobutton();
+
+                    //selectable
+                    $( "#selectable" ).selectable();
+
+                    tpv.opcionesTarjeta();
+                    tpv.controlGroupOpcionesTarjetas();
+                    $( "#datepicker" ).datepicker();
+                    $( "#izquierda" ).tooltip();
+                    tpv.progressBarProducts();
+
+                    //ordenamos lista de la izquierda
+                    /*$("#izquierda").sortable({
+                        containment: "document",
+                        connectWith: "#derecha",
+                        helper: "clone",
+                        items: "> li"
+                	}).disableSelection();*/
+
+                    //tabs
+                    $( "#tabs" ).tabs();
+
+                    //buscar productos
+                    tpv.searchForProducts();
+
+                    //cogemos los items mediante ajax
+                    //tpv.getItemsJSON();
+
+                    //mostramos los items mediante ajax
+                    tpv.showItemsFromJSON();
+
+                    //create products
+                    tpv.createProducts();
+
+                    //tpv.uploadFiles();
+
+                    //slider range
+                    tpv.sliderRange();
+
+
+                    //cuando inicio la aplicacion relleno el array con los
+                    //objetos de localstorage solo si existe esa referencia a localstorage
+                    if(localStorage.infoFactura){
+                        infoTable = JSON.parse(localStorage.infoFactura);
+                    }
+
+                    //mostramos info del localstorage
+                    tpv.mostramosAcordeonConLocalStorage();
+
+                    //limpiamos localstorage
+                    tpv.clearLocalStorage();
+                },
+
+                purchasesSalesDraggableDroppable: function(){
+                    //Los articulos en venta son draggable
+                    $("li", $purchases).draggable({
+                        cancel: "a.ui-icon", //hacer click en el item no iniciara el drag
+                        revert: "invalid", //si no lo dropamos, vuelve a su posicion
+                        containment: "#contenido",
+                        //connectToSortable: '#izquierda',
+                        helper: "clone",
+                        cursor: "move"
+                    });
+
+                    //Hacemos q en el cuadro de comprados los podamos dropar los q estan en venta
+                    $sales.droppable({
+                        accept: "#izquierda > li",
+                        classes: {
+                            //Cuando hago drag del item de compras se activa ui-droppablle-active la clase y me crea la segunda clase
+                            "ui-droppable-active": "ui-state-highlight"
+                        },
+                        drop: function(event, ui){
+                            tpv.deletePurchase(ui.draggable);
+                        }
+                    });
+
+                    //hacemos q podamos dropar los articulos comprados en la caja de ventas
+                    $purchases.droppable({
+                        accept: "#derecha li",
+                        tolerance: "touch",
+                        classes: {
+                            "ui-droppable-active": "custom-state-highlight"
+                        },
+                        drop: function(event, ui){
+                            tpv.deleteSale(ui.draggable);
+                        }
+                    });
+                },
+
+                deletePurchase: function($item){
+                    $item.fadeOut(function(){
+                        //si el div de compras y el div de ventas tienen hijos
+                        var $list = $("ul", $sales).length ?
+                        $("ul", $sales) : //si tienen hijos los cogemos
+                        $("<ul class='gallery ui-helper-reset'/>").appendTo($sales); //sino se lo añadimos a ventas
+
+                        $item.appendTo( $list ).fadeIn(function() {
+                          $item
+                            .animate({ width: "100px" })
+                            .find( "img" )
+                              .animate({ height: "70px" });
+                        });
+                    });
+                    //incrementamos contador de articulos y lo mostramos
+                    counter ++;
+                    $("#count").text(counter);
+                },
+
+                deleteSale: function($item){
+                    $item.fadeOut(function(){
+                        $item.css("width", "100px")
+                        .find("img")
+                          .css("height", "70px")
+                        .end()
+                        .appendTo($purchases)
+                        .fadeIn();
+                    });
+                    //decrementamos contador de articulos y lo mostramos
+                    counter --;
+                    $("#count").text(counter);
+                },
+
+                factura: function(){
+                    /*var accordion = $("#accordion");
+                    var facturita = $("<h3>Nº factura: " + contadorFactura +
+                           " - Nombre: "    + $("#inombre").val() +
+                           " - DNI: "       + $("#idni").val() +
+                           " - Domicilio: " + $("#idomicilio").val() +
+                           " - IBAN: " + $("#iiban").val() +
+                           " - Precio: " + $("#totalPrice").text() +
+                           " - Date: " + $("#datepicker").val() +
+                    "</h3><div>");
+                    facturita.append($("#lineasProducto > .tablaLineasProductos").clone());
+                    facturita.append("</div>");
+                    facturita.appendTo(accordion);
+                    accordion.find("h3 .tablaLineasProductos").remove();
+
+                    //refrescamos el accordeon para las facturas añadidas pq no se aplicaba sobre el segundo creado...
+                    $( "#accordion" ).accordion("refresh");*/
+
+                    //vaciamos el div accordeon
+                    $("#accordion").html("");
+
+                    //LOCALSTORAGE
+                    //guardamos los valores de los spinners en un array
+                    var inputValues = $('.filaProd').map(function() {
+                        return $(this).val();
+                    }).toArray();
+
+                    //guardamos los valores de los precios en un array
+                    var inputValuesPrecios = $("#bodyTablaLineasProductos .precioTabla").map(function() {
+                        return $(this).text();
+                    }).toArray();
+
+                    //guardamos los valores de las descripciones en un array
+                    var inputValuesDescript = $("#bodyTablaLineasProductos .description").map(function() {
+                        return $(this).text();
+                    }).toArray();
+
+                    infoTable.push({
+                        "nombre" : $("#inombre").val(),
+                        "dni" : $("#idni").val(),
+                        "domicilio" : $("#idomicilio").val(),
+                        "iban" : $("#iiban").val(),
+                        "data" : $("#datepicker").val(),
+                        "precioTotal" : $("#totalPrice").text(),
+                        "descripcion" : inputValuesDescript,
+                        "precio" : inputValuesPrecios,
+                        "cantidad" : inputValues
+                    });
+
+                    localStorage.setItem("infoFactura",JSON.stringify(infoTable));
+                    console.log(JSON.parse(localStorage.getItem("infoFactura")));
+
+                    //incrementamos el contador de la factura
+                    contadorFactura++;
+
+                    //mostramos info del localstorage
+                    tpv.mostramosAcordeonConLocalStorage();
+
+                    //reiniciamos el tpv
+                    $("#tablaLineasProductos").remove();
+                    $("#abajo").hide();
+                    $("#priceTotal").prop( "disabled", true );
+                    $("#totalPrice").text(0.0);
+
+                    //devolvemos la barra de progreso a su estado inicial mediante alertaConfirm
+                    tpv.dialogConfirm();
+
+                    //mostramos alerta de compra finalizada!!
+                    //tpv.alertaFinalizadaCompra();
+                },
+
+                mostramosAcordeonConLocalStorage: function(){
+                    //Creamos el accordion a partir del localstorage
+                    var sacarInfo = JSON.parse(localStorage.getItem("infoFactura"));
+                    var accordion = $("#accordion");
+                    //console.log(sacarInfo);
+                    $.each(sacarInfo, function( index, value ) {
+
+                        //DINERO
+                        var sumDinero = "";
+                        var arrDinero = value.precio;
+
+                        for ( var i = 0, l = arrDinero.length; i < l; i++ ) {
+                            sumDinero += arrDinero[ i ] + " ";
+                        }
+
+                        //descripcion
+                        var sumDesc = "";
+                        var arrDesc = value.descripcion;
+
+                        for ( var i = 0, l = arrDesc.length; i < l; i++ ) {
+                            sumDesc += arrDesc[ i ] + " ";
+                        }
+                        console.log(sumDesc);
+
+                        //cantidades spinners
+                        var sumCant = "";
+                        var arrCant = value.cantidad;
+
+                        for ( var i = 0, l = arrCant.length; i < l; i++ ) {
+                            sumCant += arrCant[ i ] + "  ";
+                        }
+                        console.log(sumCant);
+
+                          $("<h3>Nº factura: " + index +
+                               " - Nombre: "    + value.nombre +
+                               " - DNI: "       + value.dni +
+                               " - Domicilio: " + value.domicilio +
+                               " - IBAN: " + value.iban +
+                               " - Date: " + value.data +
+                               " - Precio: " + value.precioTotal +
+                        "</h3><div><span style='font-size:25px;'>Cantidades respectivas de los productos:</span><br />" +
+                        "<span style='font-size:20px;'><strong>Descripción</strong>: " + sumDesc + "</span><br />" +
+                        "<span style='font-size:20px;'><strong>Precio</strong>: " + sumDinero + "</span><br />" +
+                        "<span style='font-size:20px;'><strong>Cantidades</strong>: " + sumCant + "</span><br />").appendTo(accordion);
+
+                        $( "#accordion" ).accordion("refresh");
+                    });
+                    $( "#accordion" ).append("</div>");
+                },
+
+                dialogConfirm: function(){
+                    $("#dialog").dialog({
+                      buttons : {
+                        "Confirm" : function() {
+                            var currValue = $( "#progressbar" ).data("value");
+                            //si no es entero, lo pasamos a 0 el valor
+                            currValue = parseInt(currValue) ? parseInt(currValue) : 0;
+                            if(currValue == 99) {
+                                $( "#progressbar" ).progressbar({
+                                  value: currValue-66
+                              }).data("value",currValue-66);
+                                $("#progressbar").find("span").html("<strong>Seleccionando productos</strong>");
+                            }
+
+                            $(this).dialog("close");
+                        },
+                        "Cancel" : function() {
+                          $(this).dialog("close");
+                        }
+                      }
+                    });
+                },
+
+                resizable: function(){
+                    $( "#derecha" ).resizable({
+                      containment: "parent",
+                      maxWidth: 500,
+                      maxHeight: 620
+                    });
+                },
+
+                lineaFactura: function(){
+                    var bodyTableLineasProductos = $("#bodyTablaLineasProductos");
+                    bodyTableLineasProductos.empty(); //limpiamos tabla
+
+                    $("#derecha li").each(function(){
+                        var descripcion = $(this).find(".desc").text();
+                        var precio = $(this).find(".price").text();
+                        bodyTableLineasProductos.append($('<tr>')
+                                                    .append('<td class="description">' + descripcion + '</td>')
+                                                    .append('<td class="precioTabla">' + precio + '€</td>')
+                                                    .append('<input style="border:1px solid black" class="filaProd" type="text" value="1" />')
+                                                );
+                    });
+                },
+
+                precioTotal: function(){
+                    var variable = $("#bodyTablaLineasProductos").find(".precioTabla");
+                    var precio = 0.0;
+                    var arrPrecio = [];
+
+                    variable.each(function(){
+                        $p = $(this).text(); //precio producto
+                        spinnerValue = $(this).next().find(".filaProd").spinner("value"); //valor spinner
+
+                        precio = spinnerValue * parseFloat($p);
+                        arrPrecio.push(precio); //añadimos cantidades al array
+
+                    });
+
+                    //sumamos las cantidades
+                    for(var i=0; i<arrPrecio.length; i++){
+                        price += arrPrecio[i];
+                    }
+
+                    $("#totalPrice").text(price.toFixed(2)+"€");
+
+                    //vaciamos array por si volvemos a recargar los items y ponemos precio a 0.0
+                    arrPrecio.length = 0;
+                    price = 0.0;
+
+                    //habilitamos el div del formulario
+                    $("#abajo").show();
+                },
+
+                radiobutton: function(){
+                    //radiocheckbox para las opciones de pago
+                    //por defecto esta en efectivo
+                    $( "#opcionesPago input" ).checkboxradio();
+                    $( "#opcionesPago" ).controlgroup();
+                    $("#radio-1").prop("checked","true");
+                    $("#radio-1").checkboxradio("refresh");
+                },
+
+                botonesWdiget: function(){
+                    $( "button" ).button( {
+                        icon: "ui-icon-gear",
+                        iconPosition: "end"
+                    } );
+
+                    $('#payment').button({
+                      label: 'Pago con tarjeta',
+                      icons: {primary: 'my-custom-icon'},
+                      iconPosition: "end"
+                    });
+                },
+
+                opcionesTarjeta: function(){
+                    $("input:radio[id=radio-2]").click(function(){
+                        $("#selectable").show( "fold", 1000 );
+                        $( "#opcionesTrajetas" ).show( "puff", 1000 );
+                        $( "#payment" ).show();
+                    });
+
+                    $("input:radio[id=radio-1]").click(function(){
+                        $("#selectable").hide(  "slide", 1000 );
+                        $( "#opcionesTrajetas" ).hide( "explode", 1000 );
+                        $( "#payment" ).hide();
+                    });
+                },
+
+                controlGroupOpcionesTarjetas: function(){
+                    $( ".controlgroup" ).controlgroup();
+                },
+
+                alertaFinalizadaCompra: function(){
+                    $( "#dialog" ).dialog({
+                        my: "center", at: "center", of: window,
+                        maxHeight: 300,
+                        maxWidth: 300
+                    }).html("<p>Enhorabuena! Su compra ha sido registrada!</p>");
+                },
+
+                progressBarProducts: function(){
+                    $( "#progressbar" ).progressbar({
+                      value: 33,
+                      create: function(event, ui) {$(this).find('.ui-widget-header').css({'background-color':'rgb(79, 185, 224)'})}
+                    })
+                    .data("value","33");
+
+                    //cambiamos la barra de estado cuando hacemos click en cambiar cantidades
+                    //ahora el valor esta en 66
+                    $("#changeQuantity").click(function(){
+                        var currValue = $( "#progressbar" ).data("value");
+                        //si no es entero, lo pasamos a 0 el valor
+                        currValue = parseInt(currValue) ? parseInt(currValue) : 0;
+                        if(currValue == 33) {
+                            $( "#progressbar" ).progressbar({
+                              value: currValue+33
+                            }).data("value",currValue+33);
+                            $("#progressbar").find("span").html("<strong>Cambiando número de unidades</strong>");
+                        }
+                    });
+
+                    //cuando pulsamos sobre rellenar datos factura
+                    $("#create").click(function(){
+                        var currValue = $( "#progressbar" ).data("value");
+                        //si no es entero, lo pasamos a 0 el valor
+                        currValue = parseInt(currValue) ? parseInt(currValue) : 0;
+                        if(currValue == 66) {
+                            $( "#progressbar" ).progressbar({
+                              value: currValue+33
+                            }).data("value",currValue+33);
+                            $("#progressbar").find("span").html("<strong>Ya ha rellenado la factura!</strong>");
+                        }
+                    });
+                },
+
+                sliderRange: function(){
+                    function showProducts(minPrice, maxPrice) {
+                        $("#izquierda li").hide().filter(function() {
+                            var price = parseInt($(this).data("price"), 10);
+                            return price >= minPrice && price <= maxPrice;
+                        }).show();
+                    }
+
+                    var options = {
+                        range: true,
+                        min: 0,
+                        max: 40,
+                        values: [5, 20],
+                        slide: function(event, ui) {
+                            var min = ui.values[0],
+                                max = ui.values[1];
+
+                            $("#amount").val(min + "€" + " - " + max + "€");
+                            showProducts(min, max);
+                        }
+                    }, min, max;
+
+                    $("#slider-range").slider(options);
+
+                    min = $("#slider-range").slider("values", 0);
+                    max = $("#slider-range").slider("values", 1);
+
+                    $("#amount").val(min + "€" + " - " + max + "€");
+
+                    //volvemos a mostrar la funcion para q los productos correctos
+                    //se oculten
+                    //showProducts(min, max);
+                },
+
+                searchForProducts: function(){
+                    $("#buttonSearchProducts").click(function(){
+                        var myProducts = [];
+                        $("#izquierda li").each(function(){
+                            myProducts.push({
+                                "des" : $(this).find(".desc").text(),
+                                "precio" : $(this).find(".price").text()
+                            });
+                        });
+
+                        $("#derecha li").each(function(){
+                            myProducts.push({
+                                "des" : $(this).find(".desc").text(),
+                                "precio" : $(this).find(".price").text()
+                            });
+                        });
+
+                        //console.log(myProducts);
+
+                        $.each(myProducts, function( index, val ) {
+                            //console.log(val.des+val.precio);
+                            if($("#searchProducts").val() == val.des){
+                                $("#resultSearch").html("<span><strong>Descripción: " + val.des + "</strong></span><br />" +
+                                                        "<span><strong>Precio: " + val.precio + "</strong></span>");
+                            }
+                            /*$.each(val, function(key, value){
+                                //console.log(key + " " + value);
+                                if($("#searchProducts").val() == value){
+                                    console.log(key + " " +value);
+                                }else{
+                                    $("#resultSearch").html("<h3><strong>El producto no existe!</strong></h3>");
+                                }
+                            });*/
+                        });
+                    });
+                },
+
+                recorremosProductos: function(){
+                    //guardamos todos los productos en un array
+                    $("#izquierda li").each(function(){
+                        myProductsJSON.push({
+                            "des" : $(this).find(".desc").text(),
+                            "precio" : $(this).find(".price").text(),
+                            "img" : $(this).find("img").attr("src")
+                        });
+                    });
+
+                    $("#derecha li").each(function(){
+                        myProductsJSON.push({
+                            "des" : $(this).find(".desc").text(),
+                            "precio" : $(this).find(".price").text(),
+                            "img" : $(this).find("img").attr("src")
+                        });
+                    });
+                },
+
+                getItemsJSON: function(){
+                    //limpiamos el contenido del div de la izquierda
+                    //$("#izquierda").html("");
+
+                    //recorremos productos
+                    tpv.recorremosProductos();
+
+                    // con ajax le pasamos por get el array en formato string (el data es lo q le pasamos)
+                    $.ajax
+                    ({
+                        type: "GET",
+                        dataType : 'json',
+                        async: false,
+                        url: 'save_json.php',
+                        data: { data: JSON.stringify(myProductsJSON) }
+                    });
+
+
+                },
+
+                uploadFiles: function(){
+                    $(document).on("submit","#miform", function(e){
+                        e.preventDefault();
+                        $form = $(this);
+                        uploadImage($form);
+                    });
+
+                    function uploadImage($form){
+                        var formdata = new FormData($form[0]);
+
+                        var request = new XMLHttpRequest();
+                        request.open("post","upload.php");
+                        request.send(formdata);
+
+                        var hola = $("#fileImage").val();
+                        var hola2 = hola.split("\\");
+                        var hola3 = hola2.slice(hola2.length-1);
+                        console.log("img/"+hola3[0]);
+                    }
+                },
+
+                createProducts: function(){
+
+                    $(document).on("submit","#miform", function(e){
+                        e.preventDefault();
+                        $form = $(this);
+                        uploadImage($form);
+                    });
+
+                    function uploadImage($form){
+                        var formdata = new FormData($form[0]);
+
+                        var request = new XMLHttpRequest();
+                        request.open("post","upload.php");
+                        request.send(formdata);
+
+                        var imageValue = $("#fileImage").val();
+                        var imageSplit = imageValue.split("\\");
+                        var lastItem = imageSplit.slice(imageSplit.length-1);
+                        var fileName = "img/"+lastItem[0];
+                        console.log("img/"+lastItem[0]);
+
+                        var precio = $("#createProductsPrice").val();
+                        var desc = $("#createProductsDesc").val();
+                        var imagen = fileName;
+
+                        $("<li data-price=" + precio + " class='objeto ui-widget-content ui-corner-tr'" +
+                        " title='" + desc + ": " + precio + "€' ref=" + precio + ">" +
+                        "<img style='max-width:100%;' src='" + imagen + "' />" + "<p class='ref'> Ref: <span class='desc'>" + desc + "</span></p>" +
+                        "<p class='ref'> Precio: " + "<span class='price'>" + precio + "</span> €" + "</li>").appendTo($purchases);
+
+                        var newItem = {
+                            "des" : $("#createProductsDesc").val(),
+                            "precio" : $("#createProductsPrice").val(),
+                            "img" : "img/" + imagen
+                        };
+
+
+                        //vaciamos el array
+                        myProductsJSON.length = 0;
+
+                        //recorremos productos y los añadimos al array
+                        tpv.recorremosProductos();
+
+                        // con ajax le pasamos por get el array en formato string (el data es lo q le pasamos)
+                        $.ajax
+                        ({
+                            type: "GET",
+                            dataType : 'json',
+                            async: false,
+                            url: 'save_json.php',
+                            data: { data: JSON.stringify(myProductsJSON) }
+                        });
+
+                        //llamamos de nuevo a la funcion de draggable/droppable para hacer
+                        //a los nuevo items tmb
+                        tpv.purchasesSalesDraggableDroppable();
+
+                        console.log(myProductsJSON);
+                    }
+
+
+                },
+
+                showItemsFromJSON: function(){
+                    $.getJSON('items_json.json', function(data){
+                        var prod = [];
+
+                        //recorremos el array de objetos (productos)
+                        $.each(data, function(index, value){
+                            prod.push("<li data-price=" + value.precio + " class='objeto ui-widget-content ui-corner-tr'" +
+                            " title='" + value.des + ": " + value.precio + "€' ref=" + value.precio + ">" +
+                            "<img style='max-width:100%;' src='" + value.img + "' />" + "<p class='ref'> Ref: <span class='desc'>" + value.des + "</span></p>" +
+                            "<p class='ref'> Precio: " + "<span class='price'>" + value.precio + "</span> €" + "</li>");
+                        });
+
+                        //limpiamos el contenido del div de la izquierda
+                        $("#izquierda").html("");
+
+                        //lo rellenamos con los items cargados del archivo json
+                        $("#izquierda").html(prod.join(''));
+                        //console.log(prod);
+
+                        //llamamos de nuevo a la funcion de draggable/droppable para hacer
+                        //a los nuevo items tmb
+                        tpv.purchasesSalesDraggableDroppable();
+                    });
+                },
+
+                clearLocalStorage: function(){
+                    $('#clear').click(function () {
+                        localStorage.clear();
+                        location.reload();
+                    });
+                }
+            };
+
+            $(document).ready(tpv.init);
+        </script>
+    </body>
+</html>

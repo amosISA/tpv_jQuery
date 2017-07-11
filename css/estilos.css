@@ -1,0 +1,259 @@
+body{
+    font-family:Arial, Verdana, sans-serif;
+    font-size:12px;
+    background-color:#cef;
+}
+
+h1, h2{
+    text-align:center;
+    margin:0px;
+    font-family:mifuente;
+}
+
+h1{
+    font-size:40px;
+}
+
+h2{
+    font-size:25px;
+}
+
+label{
+    display:inline-block;
+    width:80px;
+    font-size:15px;
+}
+
+/*Pongo aquí este estilo que es para el hover de cuando un item entra o sale del div */
+.ui-state-highlight { background: #b9e036; }
+.custom-state-highlight { background: #b9e036; }
+
+#contenido {
+    background-color:white;
+    width:1024px;
+    margin:0px auto;
+    border-radius:10px;
+    padding:5px;
+    box-sizing:border-box;
+}
+
+.ui-widget{
+    padding:5px;
+    margin:0px auto;
+}
+
+#izquierda{
+    float:left;
+    width:400px;
+    height:620px;
+    border-radius:10px;
+    padding:5px;
+    overflow:auto;
+}
+
+#derecha{
+    width:400px;
+    height:600px;
+    border-radius:10px;
+    padding:5px;
+    overflow:auto;
+    margin-top: 12px;
+    right: -30px;
+}
+
+#padreDerecha{
+    width:450px;
+    height:620px;
+    border-radius:10px;
+    padding:5px;
+    margin-top: 12px;
+    overflow:hidden;
+    border: 2px solid black;
+    margin-left:50px;
+    float:right;
+}
+
+#caja{
+    width:300px;
+
+    padding:5px;
+    border-radius:10px;
+    margin:5px auto;
+    border:1px solid gray;
+
+    font-weight: bold;
+    font-size: 20px;
+}
+
+#abajo{
+    width:700px;
+
+    padding:5px;
+    border-radius:10px;
+    margin:5px auto;
+    border:1px solid gray;
+    display: block;
+}
+
+#listadoFacturas{
+    width:700px;
+
+    padding:5px;
+    border-radius:10px;
+    margin:5px auto;
+    border:1px solid gray;
+}
+
+#lineasProducto{
+    width:700px;
+
+    padding:5px;
+    border-radius:10px;
+    margin:5px auto;
+    border:1px solid gray;
+}
+
+#historico{
+    width:700px;
+
+    padding:5px;
+    border-radius:10px;
+    margin:5px auto;
+    border:1px solid gray;
+}
+
+.botones{
+    margin-left:80px;
+}
+
+ul{
+    list-style-type: none;
+}
+
+li.objeto{
+    width:100px;
+    margin:10px;
+    padding:5px;
+    box-sizing:border-box;
+    float:left;
+    border:1px solid black;
+    border-radius:5px;
+}
+
+li.objeto img{
+    margin:0px auto;
+    display:block;
+}
+
+.ref{
+   margin:0px;
+}
+
+.error{
+    border:1px solid red;
+}
+
+
+/* ESTILOS PARA EL SORTEABLE */
+/*#izquierda { list-style-type: none;  }
+#izquierda li { margin: 3px 3px 3px 0; padding: 1px; float: left; }*/
+
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td, th, thead {
+    border: 2px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+
+#changeQuantity{
+    margin:5px;
+    right: -250px;
+}
+
+#create{
+    margin:5px;
+}
+
+#selectable .ui-selecting { background: #FECA40; }
+#selectable .ui-selected { background: #F39814; color: white; }
+#selectable { display: none; list-style-type: none;  float:right; position:relative; left: -230px; margin-top:-330px; padding: 0; width: 150px; }
+#selectable li { margin: 3px; padding: 1px; position: relative; float: left; width: 40px; height: 30px; font-size: 2em; text-align: center; }
+
+#car-type-button {
+  width: 120px;
+}
+
+#opcionesTrajetas{
+    width: 150px;
+    position: relative;
+    right: -310px;
+    top: -60px;
+    display:none;
+}
+
+#payment{
+    position: relative;
+    height: 50px;
+    right: -310px;
+    top: -60px;
+    widht: 150px;
+    display:none;
+}
+
+/* ESTILO PARA EL BOTON DE PAGO CON TARJETA */
+.my-custom-icon {
+    background-image: url(../img/euro.png) !important;
+    width: 5px;
+    height: 5px;
+}
+
+.ui-helper-hidden-accessible { display: none; }
+
+#tabs{
+    margin-top: 25px;
+    margin-bottom: 140px;
+}
+
+#resultSearch{
+    border: 2px solid red;
+    width: 40%;
+    margin-top: 40px;
+    font-weight: bold;
+    font-size: 30px;
+}
+
+#botonAJAX{
+    margin-top: 20px;
+}
+
+/* Para el error de validacion */
+.error{
+    background-color: #BC1010;
+    padding: 6px 12px;
+    border-radius: 4px;
+    color:white;
+    font-weight: bold;
+    margin-left: 16px;
+    margin-top: 6px;
+    position: absolute;
+}
+
+.error:before{
+    content: '';
+    border-top: 8px solid transparent;
+    border-bottom: 8px solid transparent;
+    border-right: 8px solid #BC1010;
+    border-left: 8px solid transparent;
+    left: -16px;
+    position: absolute;
+    top: 5px;
+}
